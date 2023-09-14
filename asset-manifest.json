@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mongo-front/static/css/main.e6c13ad2.css",
+    "main.js": "/mongo-front/static/js/main.f95fba40.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/mongo-front/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/mongo-front/index.html",
+    "main.e6c13ad2.css.map": "/mongo-front/static/css/main.e6c13ad2.css.map",
+    "main.f95fba40.js.map": "/mongo-front/static/js/main.f95fba40.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/mongo-front/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.f95fba40.js"
+  ]
+}
