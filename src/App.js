@@ -8,7 +8,7 @@ export default function App() {
     e.preventDefault();
 
     try {
-      await axios.post("http://98.66.136.102:80/", {
+      await axios.post("https://mongo-saber.francecentral.cloudapp.azure.com/", {
         msg
       });
       // Add code to handle success if needed
@@ -19,14 +19,7 @@ export default function App() {
   };
   const [genres, setgenres] = useState([]);
 
-  useEffect(() => {
-    fetch('http://98.66.136.102:80/')
-      .then((response) => response.json())
-      .then((data) => setgenres(data))
-      .catch((error) => console.error('Error fetching data:', error));
 
-      
-  }, []);
 
   return (
     <div className='cont'>
