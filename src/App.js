@@ -32,12 +32,7 @@ export default function App() {
         ></textarea>
         <input type='submit' value='submit' />
       </form>
-      <h1>genres List</h1>
-      <ul>
-        {genres.map((genre) => (
-          <li key={genre.id}>{genre.name}</li>
-        ))}
-      </ul>
+
     </div>
   );
 }
