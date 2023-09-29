@@ -1,68 +1,120 @@
-import React, { useState,useEffect } from 'react';
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './assets/logo.jpg';
 
-export default function App() {
-  const [msg, setMsg] = useState('');
+import './App.css';
 
-  const submit = async (e) => {
+function App() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    departmentReason: '',
+    selectedOption: '', // Add a property for the <select> value
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.post("https://mongo-saber.francecentral.cloudapp.azure.com/", {
-        msg
-      });
+      await axios.post("https://mongo-saber.francecentral.cloudapp.azure.com/", formData);
       // Add code to handle success if needed
     } catch (error) {
       console.error(error);
       // Add code to handle errors if needed
     }
   };
-  const [genres, setgenres] = useState([]);
-
-
 
   return (
     <div className='cont'>
-      <form onSubmit={submit}>
-        <textarea
-          name="text"
-          value={msg}
-          onChange={(e) => { setMsg(e.target.value) }}
-          placeholder='hiiiiii'
-        ></textarea>
-        <input type='submit' value='submit' />
-      </form>
+      <div className="main-text">
+        <h1><span>J</span>oin Us</h1>
+      </div>
+      <br /><br />
+      <div className="row">
+        <div className="col-md-6">
+          <br /><br />
+          <div className="card">
+            <img src={logo} className="loo" alt="" />
+          </div>
+        </div>
+        <div className="col-md-6 py-3 py-md-0">
+          <br /><br />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Full Name"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              required
+            /><br />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            /><br />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Phone Number"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              required
+            /><br />
 
+            <select
+              className="form-control"
+              name="selectedOption"
+              value={formData.selectedOption}
+              onChange={handleChange}
+            >
+              <option value="">Select an option</option>
+              <option value="Option 1">Option 1</option>
+              <option value="Option 2">Option 2</option>
+              <option value="Option 3">Option 3</option>
+            </select>
+            <br />
+
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Why This Department"
+              name="departmentReason"
+              value={formData.departmentReason}
+              onChange={handleChange}
+              required
+            /><br />
+            {/* Add a <select> element for the user to choose an option */}
+            
+            <input
+              type="submit"
+              value="Join Us"
+              className="submit"
+              required
+            />
+          </form>
+        </div>
+      </div>
+      {/* JavaScript */}
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </div>
   );
 }
 
-
-
-/*import React, { useEffect, useState } from 'react';
-
-function BookList() {
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:5000')
-      .then((response) => response.json())
-      .then((data) => setBooks(data))
-      .catch((error) => console.error('Error fetching data:', error));
-
-      
-  }, []);
-  console.log(books)
-  return (
-    <div>
-      <h1>Book List</h1>
-      <ul>
-        {books.map((book) => (
-          <li key={book.id}>{book.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default BookList;*/
+export default App;
